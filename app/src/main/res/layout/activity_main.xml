@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+ <EditText
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/nameET"
+   android:layout_below="@id/createbtn"
+  android:hint="Enter Name"
+     android:nextFocusDown="@id/locET"
+     android:layout_margin="10dp"/>
+
+ <EditText
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/locET"
+     android:layout_below="@id/nameET"
+     android:hint="Enter Location"
+     android:layout_margin="10dp"
+     android:nextFocusDown="@id/insertvaluebtn"/>
+ <Button
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+    android:id="@+id/insertvaluebtn"
+    android:text="Insert Values"
+  android:layout_below="@id/locET"
+  android:layout_margin="10dp"/>
+ <Button
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_margin="10dp"
+     android:text="@string/create_table"
+     android:id="@+id/createbtn"/>
+
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/valuesTV"
+     android:layout_below="@id/getvaluesbtn"
+    ></TextView>
+ <Button
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/getvaluesbtn"
+     android:text="GetValues"
+     android:layout_below="@id/insertvaluebtn"/>
+
+</RelativeLayout>
