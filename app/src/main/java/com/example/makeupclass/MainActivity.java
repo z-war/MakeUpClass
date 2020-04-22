@@ -1,6 +1,8 @@
 package com.example.makeupclass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -13,12 +15,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private Button btn, insertbtn,getBtn;
     private DatabaseClass ojectdatabaseclass;
     EditText name, location;
     TextView showvalues;
-
+    ArrayList<ModelClass> modelClassArrayList;
+    RecyclerView rv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         try {
+            rv =findViewById(R.id.RV);
             btn = findViewById(R.id.createbtn);
             insertbtn = findViewById(R.id.insertvaluebtn);
             name = findViewById(R.id.nameET);
@@ -53,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                     getdata();
                 }
             });
+
+            modelClassArrayList = new ArrayList<ModelClass>();
 
         } catch (Exception e) {
             Toast.makeText(this, "Init" + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -110,12 +118,20 @@ public class MainActivity extends AppCompatActivity {
                 StringBuffer stringBuffer = new StringBuffer();
                 if(objectcurso.getCount()!=0)
                 {
+
                     while (objectcurso.moveToNext())
                     {
-                        stringBuffer.append("Name : "+objectcurso.getString(0)+"\n");
-                        stringBuffer.append("Location :"+objectcurso.getString(1)+"\n");
+//                        stringBuffer.append("Name : "+objectcurso.getString(0)+"\n");
+//                        stringBuffer.append("Location :"+objectcurso.getString(1)+"\n");
+                        ModelClass objectmodelClass = new ModelClass();
+                        objectmodelClass.setName(objectcurso.getString(0));
+                        objectmodelClass.setLocation(objectcurso.getString(1));
+                        modelClassArrayList.add(objectmodelClass);
+
                     }
-                    showvalues.setText(stringBuffer);
+                    AdapterClass objadapter = new AdapterClass(modelClassArrayList);
+                    rv.setLayoutManager(new LinearLayoutManager(this));
+                    rv.setAdapter(objadapter);
                 }else
                 {
                     Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show();

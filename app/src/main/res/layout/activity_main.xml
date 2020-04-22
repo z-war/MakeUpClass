@@ -49,5 +49,10 @@
      android:id="@+id/getvaluesbtn"
      android:text="GetValues"
      android:layout_below="@id/insertvaluebtn"/>
+ <androidx.recyclerview.widget.RecyclerView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/RV"
+     android:layout_below="@id/valuesTV"/>
 
 </RelativeLayout>
